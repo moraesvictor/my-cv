@@ -19,7 +19,9 @@ export const AboutMe = () => {
         effective applications. Functional programming enthusiast, able to
         create reusable and scalable components
       </Typography>
-      <Button style={{ border: '1px solid #999999' }}>Download CV</Button>
+      <Button style={{ border: '1px solid #ffff', color: '#ffff' }}>
+        Download CV
+      </Button>
     </Wrapper>
   );
 };

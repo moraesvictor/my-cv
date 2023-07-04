@@ -23,6 +23,7 @@ export const Home = () => {
       </Box>
       <Divider style={{ margin: '30px 0' }} />
       <AboutMe />
+      <Divider style={{ margin: '30px 0' }} />
     </div>
   );
 };
