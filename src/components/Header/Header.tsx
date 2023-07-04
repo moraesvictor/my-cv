@@ -1,17 +1,6 @@
 import { useState } from 'react';
-import { styled } from 'styled-components';
-
-export const HeaderWrapper = styled.header`
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #ffff;
-  padding: 24px;
-  margin-bottom: 40px;
-`;
-
-type HeaderLabelProps = {
-  selected?: boolean;
-};
+import styled, { css } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export const HeaderLabel = styled.label<HeaderLabelProps>`
   position: relative;
@@ -19,15 +8,36 @@ export const HeaderLabel = styled.label<HeaderLabelProps>`
   font-weight: ${({ selected }) => selected && 'bold'};
 
   ::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #ffff;
+    ${({ selected }) =>
+      selected &&
+      css`
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #ffff;
+      `}
   }
 `;
+
+export const HeaderWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffff;
+  padding: 24px;
+  margin-bottom: 40px;
+  align-items: center;
+
+  ${HeaderLabel} {
+    margin-left: 12px;
+  }
+`;
+
+type HeaderLabelProps = {
+  selected?: boolean;
+};
 
 const headerItems = [
   { id: 'my-profile', label: 'Meu Perfil' },
@@ -37,11 +47,15 @@ const headerItems = [
 
 export const Header = () => {
   const [selectedItem, setSelectedItem] = useState('my-profile');
+  const navigate = useNavigate();
   return (
     <HeaderWrapper>
       {headerItems.map((label) => (
         <HeaderLabel
-          onClick={() => setSelectedItem(label.id)}
+          onClick={() => {
+            setSelectedItem(label.id);
+            navigate(label.id);
+          }}
           selected={label.id === selectedItem}
           key={label.id}
         >
