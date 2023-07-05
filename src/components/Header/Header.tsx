@@ -26,12 +26,16 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ffff;
-  padding: 24px;
+  padding: 24px 48px;
   margin-bottom: 40px;
   align-items: center;
 
-  ${HeaderLabel} {
-    margin-left: 12px;
+  @media (max-width: 500px) {
+    padding: 24px 32px;
+
+    ${HeaderLabel} {
+      margin-left: 12px;
+    }
   }
 `;
 
