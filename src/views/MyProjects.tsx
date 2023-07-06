@@ -39,8 +39,9 @@ const Wrapper = styled.div`
 export const MyProjects = () => {
   return (
     <Wrapper>
-      {projects.map((item) => (
+      {projects.map((item, index) => (
         <ProjectCard
+          key={index}
           link={item.link}
           cardDescription={item.cardDescription}
           image={item.image}
