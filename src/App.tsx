@@ -3,6 +3,7 @@ import { Header } from './components/Header/Header';
 import { MyProfile } from './views/MyProfile';
 import { NavigateTo } from './utils/NavigateTo';
 import { MyProjects } from './views/MyProjects';
+import { ContactMe } from './views/ContactMe';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route path="/" element={<NavigateTo path="/my-profile" />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/my-projects" element={<MyProjects />} />
-          <Route path="/contact-me" />
+          <Route path="/contact-me" element={<ContactMe />} />
         </Routes>
       </BrowserRouter>
     </>

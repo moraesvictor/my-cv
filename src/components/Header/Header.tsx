@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+type HeaderLabelProps = {
+  selected?: boolean;
+};
 
 export const HeaderLabel = styled.label<HeaderLabelProps>`
   position: relative;
@@ -13,10 +17,10 @@ export const HeaderLabel = styled.label<HeaderLabelProps>`
       css`
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -5px;
         left: 0;
-        width: 100%;
-        height: 2px;
+        width: 100px;
+        height: 3px;
         background-color: #ffff;
       `}
   }
@@ -39,10 +43,6 @@ export const HeaderWrapper = styled.header`
   }
 `;
 
-type HeaderLabelProps = {
-  selected?: boolean;
-};
-
 const headerItems = [
   { id: 'my-profile', label: 'Meu Perfil' },
   { id: 'my-projects', label: 'Meus projetos' },
@@ -50,8 +50,12 @@ const headerItems = [
 ];
 
 export const Header = () => {
-  const [selectedItem, setSelectedItem] = useState('my-profile');
+  const { pathname } = useLocation();
+  const [selectedItem, setSelectedItem] = useState(pathname.replace('/', ''));
   const navigate = useNavigate();
+
+  console.log(pathname);
+
   return (
     <HeaderWrapper>
       {headerItems.map((label) => (
